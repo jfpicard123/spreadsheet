@@ -1,0 +1,51 @@
+<div class="main-content">
+  <div class="cells" [ngStyle]="gridStyle">
+    <ng-container *ngFor="let t of rowHeaderTemplates; let j = index">
+      <div class="cells__rowheaders" [style.grid-column]="j + 1"></div>
+    </ng-container>
+    <div class="cells__colheaders" *ngFor="let col of cols; let i = index">
+      <ng-container
+        *ngTemplateOutlet="columnTemplate; context: { column: col }"
+      ></ng-container>
+    </div>
+    <div class="cells__colheaders">&sum;</div>
+
+    <ng-container *ngFor="let row of rows" >
+      <ng-container *ngFor="let t of rowHeaderTemplates; let j = index">
+        <div class="cells__rowheaders" [style.grid-column]="j + 1">
+          <ng-container *ngTemplateOutlet="t.template; context: { row: row }"></ng-container>
+        </div>  
+      </ng-container>
+
+    </ng-container>
+    
+    <div class="cells__rowheaders" [style.grid-column-start]="1" [style.grid-column-end]="'span ' + rowHeaderTemplates.length" >&sum;</div>
+    
+    <div
+      class="cells__rowtotal"
+      [style.grid-column-start]="cols.length + 3"
+      *ngFor="let row of rows; let i = index"
+    >
+      {{ rowTotals[i] }}
+    </div>
+
+    <input
+      *ngFor="let dataItem of data; let i = index; trackBy: trackByFn"
+      [name]="'test' + i"
+      [(ngModel)]="data[i]"
+      [id]="i"
+      class="cells__input"
+      (change)="onChange()"
+    />
+
+    <input
+      *ngFor="let s of columnTotals; let i = index"
+      disabled
+      readonly
+      class="cells__coltotal"
+      [(ngModel)]="columnTotals[i]"
+      id="s0"
+      class="cells__input"
+    />
+  </div>
+</div>

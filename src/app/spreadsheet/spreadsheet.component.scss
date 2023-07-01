@@ -1,0 +1,66 @@
+$gray: rgb(243, 242, 241);
+$green: rgb(33, 115, 70);
+$gray-dark: rgb(230, 230, 230);
+$gray-darker: rgb(205, 205, 205);
+
+@mixin flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  font-family: 'Noto Sans', sans-serif;
+  color: #444;
+  font-size: 14px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 100%;
+  > div {
+    max-width: 100%;
+  }
+}
+
+.cells {
+  position: relative;
+  display: grid;
+  grid-gap: 1px;
+  background: $gray-darker;
+  grid-auto-flow: dense;
+  max-width: 100%;
+  overflow: hidden;
+
+  &__colheaders {
+    background: $gray-dark;
+    @include flex-centered;
+  }
+
+  &__rowheaders {
+    background: $gray-dark;
+    
+    @include flex-centered;
+  }
+
+  &__rowtotal {
+    background: $gray-dark;
+    @include flex-centered;
+  }
+
+  &__input {
+    border: none;
+    padding: 0 6px;
+  }
+
+  input:focus {
+    outline: none !important;
+    border: 2px solid red;
+  }
+}

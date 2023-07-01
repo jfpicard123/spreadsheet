@@ -1,0 +1,10 @@
+/* Add application styles & imports to this file! */
+@import './styles/_variables';
+@import 'bootstrap/scss/bootstrap';
+@import '~compass-mixins/lib/compass/css3';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
